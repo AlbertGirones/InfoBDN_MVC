@@ -17,16 +17,13 @@ session_start();
 <body>
     <script src="script.js"></script>
     <?php
-    include "functions.php";
     require_once "autoload.php";
-    require_once "views/general/menu.php";
-    require_once "views/general/botonSubir.html";
-    
+
     if (isset($_GET['controller'])) {
         $nombreController = $_GET['controller'] . "Controller";
     } else {
         //Controlador per dedecte
-        $nombreController = "LoginController";
+        $nombreController = "PrincipalController";
     }
     if (class_exists($nombreController)) {
         $controlador = new $nombreController();
@@ -39,8 +36,6 @@ session_start();
     } else {
         echo "No existe el controlador";
     }
-    require_once "views/general/pie.html";
-    require_once "views/general/wrapper.php";
     ?>
 </body>
 

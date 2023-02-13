@@ -1,5 +1,4 @@
 <?php
-
 function autocargar($nombreClase){
     include "controllers/$nombreClase.php";
 }
