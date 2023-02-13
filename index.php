@@ -32,7 +32,12 @@ session_start();
         } else {
             $action = "index";
         }
-        $controlador->$action();
+        try{
+            $controlador->$action();
+        } catch (Exception $e){
+            echo "Ha habido un error: ",  $e->getMessage(),"\n";
+        }
+       
     } else {
         echo "No existe el controlador";
     }

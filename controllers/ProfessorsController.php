@@ -9,4 +9,8 @@ class ProfessorsController
         $listado = $professor->obtenerListado();
         require_once "views/admin/professorsAdmin.php";
     }
+
+    public function showFormNewProfessor() {
+        require_once  "views/admin/formProfessor.php";
+    }
 }
