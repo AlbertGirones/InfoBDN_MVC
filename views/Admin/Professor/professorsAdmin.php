@@ -20,10 +20,10 @@ echo "
         </div>
         <div id='administracion'>
             <h1>Gestió professors</h1>
-            <form action='profeadmin.php' method='post' name='filtre'>
+            <form action='index.php?controller=Professors&action=buscarProfessor' method='post' name='filtre'>
                 Necessites buscar algun professor?<input type='text' id='filtre' name='filtre' placeholder='Buscar'/>
                 <button type='submit'>Buscar</button>
-                <a href='profeadmin.php'><img src='img/48/icons8-cross-mark-48.png' id='cancelar''></a>
+                <a href='index.php?controller=Professors&action=showProfessors'><img src='img/48/icons8-cross-mark-48.png' id='cancelar''></a>
             </form>
             <table id='table'>
                 <tr>

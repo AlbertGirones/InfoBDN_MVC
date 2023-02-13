@@ -4,17 +4,20 @@ require "models/professors.php";
 
 class ProfessorsController
 {
-    public function showProfessors() {
+    public function showProfessors()
+    {
         $professor = new Professor();
         $listado = $professor->obtenerListado();
         require_once "views/admin/professor/professorsAdmin.php";
     }
 
-    public function showFormNewProfessor() {
+    public function showFormNewProfessor()
+    {
         require_once "views/admin/professor/formProfessor.php";
     }
 
-    public function saveFormProfessor(){
+    public function saveFormProfessor()
+    {
         $professor = new Professor();
         $dni = trim($_POST['DNI']);
         $nomProfessor = trim($_POST['nom_prof']);
@@ -40,14 +43,16 @@ class ProfessorsController
         header("Location: index.php?controller=Professors&action=showProfessors");
     }
 
-    public function showFormEditProfessor() {
+    public function showFormEditProfessor()
+    {
         $professor = new Professor();
         $idProfessor = $_GET['id'];
         $listado = $professor->obtenerProfessor($idProfessor);
         require_once "views/admin/professor/formEditarProfessor.php";
     }
 
-    public function saveFormEditProfessor() {
+    public function saveFormEditProfessor()
+    {
         $professor = new Professor();
         $dni = $_POST['DNI'];
         $nomProfessor = $_POST['nom_prof'];
@@ -57,14 +62,16 @@ class ProfessorsController
         header("Location: index.php?controller=Professors&action=showProfessors");
     }
 
-    public function showFormFotoProfessor() {
+    public function showFormFotoProfessor()
+    {
         $professor = new Professor();
         $idProfessor = $_GET['id'];
         $listado = $professor->obtenerDatosProfessor($idProfessor);
         require_once "views/admin/professor/modificarFotoProfessor.php";
     }
 
-    public function saveFormFotoProfessor() {
+    public function saveFormFotoProfessor()
+    {
         $professor = new Professor();
 
         $dni = trim($_POST['DNI']);
@@ -86,17 +93,27 @@ class ProfessorsController
         header("Location: index.php?controller=Professors&action=showProfessors");
     }
 
-    public function activarProfessor() {
+    public function activarProfessor()
+    {
         $idProfessor = $_GET['id'];
         $professor = new Professor();
         $professor->activar($idProfessor);
         header("Location: index.php?controller=Professors&action=showProfessors");
     }
 
-    public function desactivarProfessor() {
-    $idProfessor = $_GET['id'];
-    $professor = new Professor();
-    $professor->desactivar($idProfessor);
-    header("Location: index.php?controller=Professors&action=showProfessors");
-}
+    public function desactivarProfessor()
+    {
+        $idProfessor = $_GET['id'];
+        $professor = new Professor();
+        $professor->desactivar($idProfessor);
+        header("Location: index.php?controller=Professors&action=showProfessors");
+    }
+
+    public function buscarProfessor()
+    {
+        $filtro = $_POST['filtre'];
+        $buscador = new Professor();
+        $listado = $buscador->filtrarProfessors($filtro);
+        require_once "views/admin/professor/professorsAdmin.php";
+    }
 }

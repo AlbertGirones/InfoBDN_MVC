@@ -62,4 +62,11 @@ class Professor extends Database
         $consulta = $this->db->prepare("UPDATE professors SET foto_prof= '$imagen' WHERE DNI = '$dni'");
         $consulta->execute();
     }
+
+    public function filtrarProfessors($filtro) {
+        $consulta = $this->db->prepare("SELECT DNI, nom_prof, cog_prof, titol_prof, foto_prof, visible FROM professors WHERE nom_prof LIKE '%$filtro%'");
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+        return $resultado;
+    }
 }
