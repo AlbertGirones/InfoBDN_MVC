@@ -9,6 +9,13 @@ class Professor extends Database
         return $resultado;
     }
 
+    public function obtenerListadoSimplificado() {
+        $consulta = $this->db->prepare("SELECT DNI, nom_prof, cog_prof FROM professors WHERE visible LIKE 1");
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+        return $resultado;
+    }
+
     public function obtenerProfessor($idProfessor) {
         $consulta = $this->db->prepare("SELECT DNI, nom_prof, cog_prof, titol_prof FROM professors WHERE DNI LIKE '$idProfessor'");
         $consulta->execute();

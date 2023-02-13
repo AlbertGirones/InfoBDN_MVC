@@ -18,7 +18,7 @@ echo "<!DOCTYPE html>
         </div>
         <div id='adminhub'>
             <div><a href='index.php?controller=Professors&action=showProfessors'>Gestió professors</a></div>
-            <div><a href='cursadmin.php'>Gestió cursos</a></div>
+            <div><a href='index.php?controller=Cursos&action=showCursos'>Gestió cursos</a></div>
         </div>";
     }
     else{
