@@ -19,13 +19,19 @@ class AdminController
 
         if ($result) {
             $_SESSION['user'] = $user;
+            $_SESSION['role'] = 'admin';
             header('Location: index.php?controller=Admin&action=showPrincipalPage');
         } else {
-            echo "nanananna";
+            require_once "views/loginIncorrecte.php";
         }
     }
 
-    public function showPrincipalPage() {
-        require_once "views/Admin/menuAdmin.php";
+    public function showPrincipalPage(){
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            require_once "views/Admin/menuAdmin.php";
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
     }
 }

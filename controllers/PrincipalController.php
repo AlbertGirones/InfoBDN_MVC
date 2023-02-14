@@ -61,7 +61,6 @@ class PrincipalController
         }
 
     }
-
     public function showUserRegister()
     {
         require_once "views/registerUser.php";

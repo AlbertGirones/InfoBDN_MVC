@@ -8,68 +8,98 @@ class ProfessorsController
 {
     public function showProfessors()
     {
-        $professor = new Professor();
-        $listado = $professor->obtenerListado();
-        require_once "views/admin/professor/professorsAdmin.php";
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            $professor = new Professor();
+            $listado = $professor->obtenerListado();
+            require_once "views/admin/professor/professorsAdmin.php";
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
     }
 
     public function showFormNewProfessor()
     {
-        require_once "views/admin/professor/formProfessor.php";
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            require_once "views/admin/professor/formProfessor.php";
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
     }
 
     public function saveFormProfessor()
     {
-        $professor = new Professor();
-        $dni = trim($_POST['DNI']);
-        $nomProfessor = trim($_POST['nom_prof']);
-        $cognomProfessor = $_POST['cog_prof'];
-        $titolProfessor = $_POST['titol_prof'];
-        $passwd = 123;
-        $md5passwd = md5($passwd);
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            $professor = new Professor();
+            $dni = trim($_POST['DNI']);
+            $nomProfessor = trim($_POST['nom_prof']);
+            $cognomProfessor = $_POST['cog_prof'];
+            $titolProfessor = $_POST['titol_prof'];
+            $passwd = 123;
+            $md5passwd = md5($passwd);
 
-        if (is_uploaded_file($_FILES['foto']['tmp_name'])) {
-            $nombreDirectorio = "img/profesimg/";
-            $idUnico = $dni;
-            $nombreOrigen = $_FILES['foto']['name'];
-            $contenido = explode(".", $nombreOrigen);
-            $extension = $contenido[1];
-            $nombreFichero = $idUnico . "." . $extension;
-            move_uploaded_file(
-                $_FILES['foto']['tmp_name'],
-                $nombreDirectorio . $nombreFichero
-            );
+            if (is_uploaded_file($_FILES['foto']['tmp_name'])) {
+                $nombreDirectorio = "img/profesimg/";
+                $idUnico = $dni;
+                $nombreOrigen = $_FILES['foto']['name'];
+                $contenido = explode(".", $nombreOrigen);
+                $extension = $contenido[1];
+                $nombreFichero = $idUnico . "." . $extension;
+                move_uploaded_file(
+                    $_FILES['foto']['tmp_name'],
+                    $nombreDirectorio . $nombreFichero
+                );
+            }
+            $imagen = $nombreDirectorio . $nombreFichero;
+            $professor->anadir($dni, $nomProfessor, $cognomProfessor, $titolProfessor, $imagen, $md5passwd);
+            header("Location: index.php?controller=Professors&action=showProfessors");
         }
-        $imagen = $nombreDirectorio . $nombreFichero;
-        $professor->anadir($dni, $nomProfessor, $cognomProfessor, $titolProfessor, $imagen, $md5passwd);
-        header("Location: index.php?controller=Professors&action=showProfessors");
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
     }
 
     public function showFormEditProfessor()
     {
-        $professor = new Professor();
-        $idProfessor = $_GET['id'];
-        $listado = $professor->obtenerProfessor($idProfessor);
-        require_once "views/admin/professor/formEditarProfessor.php";
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            $professor = new Professor();
+            $idProfessor = $_GET['id'];
+            $listado = $professor->obtenerProfessor($idProfessor);
+            require_once "views/admin/professor/formEditarProfessor.php";
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
     }
 
     public function saveFormEditProfessor()
     {
-        $professor = new Professor();
-        $dni = $_POST['DNI'];
-        $nomProfessor = $_POST['nom_prof'];
-        $cognomProfessor = $_POST['cog_prof'];
-        $titolProfessor = $_POST['titol_prof'];
-        $professor->editar($dni, $nomProfessor, $cognomProfessor, $titolProfessor);
-        header("Location: index.php?controller=Professors&action=showProfessors");
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            $professor = new Professor();
+            $dni = $_POST['DNI'];
+            $nomProfessor = $_POST['nom_prof'];
+            $cognomProfessor = $_POST['cog_prof'];
+            $titolProfessor = $_POST['titol_prof'];
+            $professor->editar($dni, $nomProfessor, $cognomProfessor, $titolProfessor);
+            header("Location: index.php?controller=Professors&action=showProfessors");
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
     }
 
     public function showFormFotoProfessor()
     {
-        $professor = new Professor();
-        $idProfessor = $_GET['id'];
-        $listado = $professor->obtenerDatosProfessor($idProfessor);
-        require_once "views/admin/professor/modificarFotoProfessor.php";
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            $professor = new Professor();
+            $idProfessor = $_GET['id'];
+            $listado = $professor->obtenerDatosProfessor($idProfessor);
+            require_once "views/admin/professor/modificarFotoProfessor.php";
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
     }
 
     public function saveFormFotoProfessor()
@@ -97,6 +127,12 @@ class ProfessorsController
 
     public function activarProfessor()
     {
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            require_once "views/Admin/menuAdmin.php";
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
         $idProfessor = $_GET['id'];
         $professor = new Professor();
         $professor->activar($idProfessor);
@@ -105,6 +141,12 @@ class ProfessorsController
 
     public function desactivarProfessor()
     {
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            require_once "views/Admin/menuAdmin.php";
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
         $idProfessor = $_GET['id'];
         $professor = new Professor();
         $professor->desactivar($idProfessor);
@@ -113,6 +155,12 @@ class ProfessorsController
 
     public function buscarProfessor()
     {
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            require_once "views/Admin/menuAdmin.php";
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
         $filtro = $_POST['filtre'];
         $buscador = new Professor();
         $listado = $buscador->filtrarProfessors($filtro);

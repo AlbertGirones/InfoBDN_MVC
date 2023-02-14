@@ -8,79 +8,119 @@ class CursosController
 {
     public function showCursos()
     {
-        $curs = new Curs();
-        $listado = $curs->obtenerListado();
-        require_once "views/admin/curs/cursosAdmin.php";
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            $curs = new Curs();
+            $listado = $curs->obtenerListado();
+            require_once "views/admin/curs/cursosAdmin.php";
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
     }
 
     public function showFormNewCurs()
     {
-        $professor = new Professor();
-        $listado = $professor->obtenerListadoSimplificado();
-        require_once "views/admin/curs/formCurs.php";
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            $professor = new Professor();
+            $listado = $professor->obtenerListadoSimplificado();
+            require_once "views/admin/curs/formCurs.php";
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
     }
 
     public function saveFormCurs()
     {
-        $curs = new Curs();
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            $curs = new Curs();
 
-        $nom_curs = $_POST['nom_curs'];
-        $desc_curs = $_POST['desc_curs'];
-        $hores_curs = $_POST['hores_curs'];
-        $ini_curs = $_POST['ini_curs'];
-        $fin_curs = $_POST['fin_curs'];
-        $DNI_prof = $_POST['DNI_prof'];
+            $nom_curs = $_POST['nom_curs'];
+            $desc_curs = $_POST['desc_curs'];
+            $hores_curs = $_POST['hores_curs'];
+            $ini_curs = $_POST['ini_curs'];
+            $fin_curs = $_POST['fin_curs'];
+            $DNI_prof = $_POST['DNI_prof'];
 
-        $curs->anadir($nom_curs, $desc_curs, $hores_curs, $ini_curs, $fin_curs, $DNI_prof);
-        header("Location: index.php?controller=Cursos&action=showCursos");
+            $curs->anadir($nom_curs, $desc_curs, $hores_curs, $ini_curs, $fin_curs, $DNI_prof);
+            header("Location: index.php?controller=Cursos&action=showCursos");
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
     }
 
     public function showFormEditCurs()
     {
-        $curs = new Curs();
-        $professor = new Professor();
-        $idCurs = $_GET['id'];
-        $listado = $curs->obtenerCurs($idCurs);
-        $professores = $professor->obtenerListadoSimplificado();
-        require_once "views/admin/curs/formEditarCurs.php";
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            $curs = new Curs();
+            $professor = new Professor();
+            $idCurs = $_GET['id'];
+            $listado = $curs->obtenerCurs($idCurs);
+            $professores = $professor->obtenerListadoSimplificado();
+            require_once "views/admin/curs/formEditarCurs.php";
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
     }
 
     public function saveFormEditCurs()
     {
-        $curs = new Curs();
-        $id = $_POST['id'];
-        $nomCurs = $_POST['nom_curs'];
-        $descripcioCurs = $_POST['desc_curs'];
-        $horesCurs = $_POST['hores_curs'];
-        $dataInici = $_POST['ini_curs'];
-        $dataFinal = $_POST['fin_curs'];
-        $professor = $_POST['DNI_prof'];
-        $curs->editar($id, $nomCurs, $descripcioCurs, $horesCurs, $dataInici, $dataFinal, $professor);
-        header("Location: index.php?controller=Cursos&action=showCursos");
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            $curs = new Curs();
+            $id = $_POST['id'];
+            $nomCurs = $_POST['nom_curs'];
+            $descripcioCurs = $_POST['desc_curs'];
+            $horesCurs = $_POST['hores_curs'];
+            $dataInici = $_POST['ini_curs'];
+            $dataFinal = $_POST['fin_curs'];
+            $professor = $_POST['DNI_prof'];
+            $curs->editar($id, $nomCurs, $descripcioCurs, $horesCurs, $dataInici, $dataFinal, $professor);
+            header("Location: index.php?controller=Cursos&action=showCursos");
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
     }
 
     public function activarCurs()
     {
-        $idCurs = $_GET['id'];
-        $curs = new Curs();
-        $curs->activar($idCurs);
-        header("Location: index.php?controller=Cursos&action=showCursos");
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            $idCurs = $_GET['id'];
+            $curs = new Curs();
+            $curs->activar($idCurs);
+            header("Location: index.php?controller=Cursos&action=showCursos");
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
     }
 
     public function desactivarCurs()
     {
-        $idCurs = $_GET['id'];
-        $curs = new Curs();
-        $curs->desactivar($idCurs);
-        header("Location: index.php?controller=Cursos&action=showCursos");
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            $idCurs = $_GET['id'];
+            $curs = new Curs();
+            $curs->desactivar($idCurs);
+            header("Location: index.php?controller=Cursos&action=showCursos");
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
     }
 
     public function buscarCurs()
     {
-        $filtro = $_POST['filtre'];
-        $buscador = new Curs();
-        $listado = $buscador->filtrarCursos($filtro);
-        require_once "views/admin/curs/cursosAdmin.php";
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            $filtro = $_POST['filtre'];
+            $buscador = new Curs();
+            $listado = $buscador->filtrarCursos($filtro);
+            require_once "views/admin/curs/cursosAdmin.php";
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
     }
 
     public function showCursosDisponibles(){
