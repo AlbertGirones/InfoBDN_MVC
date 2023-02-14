@@ -14,4 +14,4 @@
         <p><button type='submit' class='botonform'><img src='img/sendwhitegood.svg' id='fotoenviar'></button></p>
     </form>
 </div>
-<a href='index.php?controller=Principal&action=' id='registerlink'><p>Ets alumne? Registrat!</p></a>
+<a href='index.php?controller=Principal&action=showUserRegister' id='registerlink'><p>Ets alumne? Registrat!</p></a>

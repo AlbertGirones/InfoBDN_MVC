@@ -2,6 +2,17 @@
 require_once("database.php");
 class Professor extends Database
 {
+    public function login($usuario, $passwd)
+    {
+        $consulta = $this->db->prepare("SELECT * FROM professors WHERE DNI LIKE '$usuario' AND passwd_prof LIKE '$passwd'");
+        $consulta->execute();
+        if ($consulta->fetch(PDO::FETCH_OBJ)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function obtenerListado() {
         $consulta = $this->db->prepare("SELECT DNI, nom_prof, cog_prof, titol_prof, foto_prof, visible FROM professors");
         $consulta->execute();
@@ -29,6 +40,14 @@ class Professor extends Database
         $resultado = $consulta->fetchAll();
         return $resultado;
     }
+
+    public function obtenerDatosProfessorFoto($idProfessor) {
+        $consulta = $this->db->prepare("SELECT DNI, nom_prof, cog_prof, foto_prof FROM professors WHERE DNI LIKE '$idProfessor'");
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+        return $resultado;
+    }
+
     public function activar($id){
         $consulta = $this->db->prepare("UPDATE professors SET visible = 1 WHERE DNI LIKE '$id'");
         $consulta->execute();

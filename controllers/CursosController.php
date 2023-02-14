@@ -2,6 +2,7 @@
 
 require "models/cursos.php";
 require "models/professors.php";
+require "models/matricula.php";
 
 class CursosController
 {
@@ -82,4 +83,51 @@ class CursosController
         require_once "views/admin/curs/cursosAdmin.php";
     }
 
+    public function showCursosDisponibles(){
+        $curs = new Curs();
+        $date = date ( 'Y-m-d' );
+        $user = $_SESSION["dni"];
+        $listado = $curs->comprobarFechaCurso($date, $user);
+        require_once "views/alumne/cursosDisponibles.php";
+    }
+
+    public function buscarCursDisponible(){
+        $filtro = $_POST['filtre'];
+        $date = date ( 'Y-m-d' );
+        $user = $_SESSION["dni"];
+        $buscador = new Curs();
+        $listado = $buscador->filtrarCursosDisponibles($filtro, $date, $user);
+        require_once "views/alumne/cursosDisponibles.php";
+    }
+
+    public function inscripcioCurs() {
+        $matricula = new Matricula();
+        $id = $_GET["id"];
+        $dni = $_SESSION["dni"];
+        $matricula->inscripcioON($dni, $id);
+        header("Location: index.php?controller=Cursos&action=showCursosDisponibles");
+    }
+
+    public function showElsMeusCursos(){
+        $curs = new Curs();
+        $dni = $_SESSION["dni"];
+        $listado = $curs->obtenirElsMeusCursos($dni);
+        require_once "views/alumne/elsMeusCursos.php";
+    }
+
+    public function donarBaixaCurs() {
+        $matricula = new Matricula();
+        $id = $_GET["id"];
+        $dni = $_SESSION["dni"];
+        $matricula->inscripcioOFF($dni, $id);
+        header("Location: index.php?controller=Cursos&action=showElsMeusCursos");
+    }
+
+    public function buscarElMeuCurs(){
+        $filtro = $_POST['filtre'];
+        $dni = $_SESSION["dni"];
+        $buscador = new Curs();
+        $listado = $buscador->filtrarElsMeusCursos($filtro, $dni);
+        require_once "views/alumne/elsMeusCursos.php";
+    }
 }

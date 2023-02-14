@@ -59,4 +59,33 @@ class Curs extends Database
         $resultado = $consulta->fetchAll();
         return $resultado;
     }
+
+    public function comprobarFechaCurso($date, $user){
+        $consulta = $this->db->prepare("SELECT * FROM cursos WHERE visible LIKE 1 AND ini_curs > '$date' AND codi_curs NOT IN (SELECT curso FROM matricula WHERE DNI_alum = '$user')");
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+        return $resultado;
+    }
+
+    public function filtrarCursosDisponibles($filtre, $date, $dni){
+        $consulta = $this->db->prepare("SELECT * FROM cursos WHERE nom_curs LIKE '%$filtre%' AND visible LIKE 1 AND ini_curs > '$date' AND codi_curs NOT IN (SELECT curso FROM matricula WHERE DNI_alum = '$dni')");
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+        return $resultado;
+    }
+
+    public function obtenirElsMeusCursos($dni){
+        $consulta = $this->db->prepare("SELECT * FROM cursos WHERE visible LIKE 1 AND codi_curs IN (SELECT curso FROM matricula WHERE DNI_alum = '$dni')");
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+        return $resultado;
+    }
+
+    public function filtrarElsMeusCursos($filtre, $dni){
+        $consulta = $this->db->prepare("SELECT * FROM cursos WHERE nom_curs LIKE '%$filtre%' AND visible LIKE 1 AND codi_curs IN (SELECT curso FROM matricula WHERE DNI_alum = '$dni')");
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+        return $resultado;
+    }
+
 }
