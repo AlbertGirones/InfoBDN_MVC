@@ -12,6 +12,6 @@ Password: 123
 
 USUARI ALUMNE:
 
-Nom: Julian Alvarez Moñon
-User: 451283644Ñ
-Password: alum123
+Nom: Morad lal
+User: 77777777L
+Password: 123
