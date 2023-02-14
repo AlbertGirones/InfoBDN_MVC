@@ -25,7 +25,22 @@ echo "
                     <p><input type='text' name='desc_curs' id='desc_curs' value='".$curs['desc_curs']."' class='campoform' ></p>
                     <p><input type='number' name='hores_curs' id='hores_curs' value='".$curs['hores_curs']."' class='campoform' ></p>
                     <p><input type='date' name='ini_curs' id='ini_curs' value='".$curs['ini_curs']."' class='campoform' ></input></p>
-                    <p><input type='date' name='fin_curs' id='fin_curs' value='".$curs['fin_curs']."' class='campoform' ></input></p>";
+                    <p><input type='date' name='fin_curs' id='fin_curs' value='".$curs['fin_curs']."' class='campoform' ></input></p>
+                    <p><br><select name='DNI_prof' id='DNI_prof'>";
+                    foreach ($professores as $professor) {
+                        if($professor["DNI"] == $curs['DNI_prof']){
+                            ?>
+                            <option selected value='<?php echo $professor["DNI"] ?>'><?php echo $professor["DNI"]." - ".$professor["nom_prof"]." ".$professor["cog_prof"]?></option>
+                            <?php
+                        }
+                        else{
+                            ?>
+                            <option value='<?php echo $professor["DNI"] ?>'><?php echo $professor["DNI"]." - ".$professor["nom_prof"]." ".$professor["cog_prof"]?></option>
+                            <?php
+                        }
+
+                    }
+                    echo "</select></p>";
                 }
                 echo "<p><button type='submit'>Modificar professor</button></p>";
             echo "</form>

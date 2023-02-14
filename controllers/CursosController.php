@@ -40,7 +40,7 @@ class CursosController
         $professor = new Professor();
         $idCurs = $_GET['id'];
         $listado = $curs->obtenerCurs($idCurs);
-        $professorsCompletos = $professor->obtenerListadoSimplificado();
+        $professores = $professor->obtenerListadoSimplificado();
         require_once "views/admin/curs/formEditarCurs.php";
     }
 
@@ -52,8 +52,9 @@ class CursosController
         $descripcioCurs = $_POST['desc_curs'];
         $horesCurs = $_POST['hores_curs'];
         $dataInici = $_POST['ini_curs'];
-        $dataFinal= $_POST['fin_curs'];
-        $curs->editar($id, $nomCurs, $descripcioCurs, $horesCurs, $dataInici, $dataFinal);
+        $dataFinal = $_POST['fin_curs'];
+        $professor = $_POST['DNI_prof'];
+        $curs->editar($id, $nomCurs, $descripcioCurs, $horesCurs, $dataInici, $dataFinal, $professor);
         header("Location: index.php?controller=Cursos&action=showCursos");
     }
 

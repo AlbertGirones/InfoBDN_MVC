@@ -45,10 +45,11 @@ class Curs extends Database
         $descripcio,
         $hores,
         $dataInici,
-        $dataFinal
+        $dataFinal,
+        $professor
     )
     {
-        $consulta = $this->db->prepare("UPDATE cursos SET nom_curs= '$nom', desc_curs= '$descripcio', hores_curs= '$hores', ini_curs= '$dataInici', fin_curs = '$dataFinal' WHERE codi_curs = '$id'");
+        $consulta = $this->db->prepare("UPDATE cursos SET nom_curs= '$nom', desc_curs= '$descripcio', hores_curs= '$hores', ini_curs= '$dataInici', fin_curs = '$dataFinal', DNI_prof = '$professor' WHERE codi_curs = '$id'");
         $consulta->execute();
     }
 
