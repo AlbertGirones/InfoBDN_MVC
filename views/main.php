@@ -4,14 +4,14 @@
         <meta charset='UTF-8'>
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <title>Llibreria Time2Read</title>
+        <title>InfoBDN: Pagina principal</title>
         <link rel='stylesheet' href='css/style.css'>
     </head>
     <body>
         <div class='header'>
             <img src='img/logo.svg' alt='Logo'>
             <div class='navmenu'>
-                <a href='#'><p>Iniciar sessió</p></a>
+                <a href='index.php?controller=Principal&action=showUserLogin'><p>Iniciar sessió</p></a>
                 <a href='index.php?controller=Admin&action=showAdminLogin'><p>Administració</p></a>
             </div>
         </div>
