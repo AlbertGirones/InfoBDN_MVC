@@ -37,6 +37,9 @@ session_start();
         } catch (Exception $e){
             echo "Ha habido un error: ",  $e->getMessage(),"\n";
         }
+        catch (Error $e){
+            echo "Ha habido un error: ",  $e->getMessage(),"\n";
+        }
        
     } else {
         echo "No existe el controlador";
