@@ -1,6 +1,8 @@
 <?php
 
 require "models/professors.php";
+require "models/cursos.php";
+require "models/alumne.php";
 
 class ProfessorsController
 {
@@ -116,4 +118,44 @@ class ProfessorsController
         $listado = $buscador->filtrarProfessors($filtro);
         require_once "views/admin/professor/professorsAdmin.php";
     }
+
+    public function showElsMeusCursos(){
+        $cursos = new Curs();
+        $dni = $_SESSION["dni"];
+        $listado = $cursos->obtenerListadoProfessor($dni);
+        require_once "views/professor/elsMeusCursosProfessor.php";
+    }
+
+    public function buscarElMeuCurs(){
+        $filtro = $_POST['filtre'];
+        $dni = $_SESSION["dni"];
+        $buscador = new Curs();
+        $listado = $buscador->filtrarElsMeusCursosProfessor($filtro, $dni);
+        require_once "views/professor/elsMeusCursosProfessor.php";
+    }
+
+    public function showAlumnesXCurs(){
+        $alumnes = new Alumne();
+        $idCurso = $_GET['id'];
+        $listado = $alumnes->obtenerListadoAlumnos($idCurso);
+        require_once "views/professor/alumnesXCurs.php";
+    }
+
+    public function showPosarNota(){
+        $alumnes = new Alumne();
+        $dniAlumne = $_GET['DNI_alum'];
+        $idCurso = $_GET['idcurs'];
+        $nota = $_GET['nota'];
+        require_once "views/professor/formNota.php";
+    }
+
+    public function savePosarNota(){
+        $alumnes = new Alumne();
+        $dniAlumne = $_POST['DNI'];
+        $idCurso = $_POST['idcurs'];
+        $nota = $_POST['nota'];
+        $alumnes->editar($dniAlumne, $idCurso, $nota);
+        header("Location: index.php?controller=Professors&action=showAlumnesXCurs&id=$idCurso");
+    }
+
 }

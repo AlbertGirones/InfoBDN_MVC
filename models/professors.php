@@ -95,4 +95,12 @@ class Professor extends Database
         $resultado = $consulta->fetchAll();
         return $resultado;
     }
+
+    public function filtrarAlumnes($filtre, $idCurs) {
+        $consulta = $this->db->prepare("SELECT * FROM alumnes AS a INNER JOIN matricula AS m ON a.DNI = m.DNI_alum WHERE m.curso = $idCurs AND nom_curs LIKE '%$filtre%'");
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+        return $resultado;
+    }
+
 }

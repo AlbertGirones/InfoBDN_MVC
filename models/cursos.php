@@ -88,4 +88,18 @@ class Curs extends Database
         return $resultado;
     }
 
+    public function filtrarElsMeusCursosProfessor($filtre, $dni){
+        $consulta = $this->db->prepare("SELECT * FROM cursos WHERE nom_curs LIKE '%$filtre%' AND visible LIKE 1 AND DNI_prof = '$dni'");
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+        return $resultado;
+    }
+
+    public function obtenerListadoProfessor($dni){
+        $consulta = $this->db->prepare("SELECT * FROM cursos WHERE visible LIKE 1 AND DNI_prof = '$dni'");
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+        return $resultado;
+    }
+
 }

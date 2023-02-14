@@ -53,7 +53,7 @@ class PrincipalController
                     $_SESSION['apellido'] = $dato['cog_prof'];
                     $_SESSION['foto'] = $dato['foto_prof'];
                 }
-                header("Location: index.php?controller=Cursos&action=showCursosDisponibles");
+                header("Location: index.php?controller=Professors&action=showElsMeusCursos");
             }
             else{
                 echo "login incorrecto (profe)";

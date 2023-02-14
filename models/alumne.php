@@ -33,4 +33,21 @@ class Alumne extends Database
         $consulta->execute();
     }
 
+    public function obtenerListadoAlumnos($idCurso){
+        $consulta = $this->db->prepare("SELECT * FROM alumnes AS a INNER JOIN matricula AS m ON a.DNI = m.DNI_alum WHERE m.curso = $idCurso");
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+        return $resultado;
+    }
+
+    public function editar(
+        $dniAlumne,
+        $idCurso,
+        $nota
+    )
+    {
+        $consulta = $this->db->prepare("UPDATE matricula SET nota = $nota WHERE DNI_alum = '$dniAlumne' AND curso = $idCurso");
+        $consulta->execute();
+    }
+
 }
