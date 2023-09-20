@@ -33,3 +33,8 @@ echo "<div class='header'>
         }
     echo "</div>
 </div>";
+if ($loginAlumne == 0) {
+    echo "<script>
+        obrirFinestraConcurs();
+    </script>";
+}

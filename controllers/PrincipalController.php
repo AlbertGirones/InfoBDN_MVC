@@ -29,6 +29,8 @@ class PrincipalController
             if($result){
                 $datos = new Alumne();
                 $informacion = $datos->obtenerDatosAlumneFoto($dni);
+                $fechaActual = date("Y-m-d");
+                $datos->insertarFecha($fechaActual,$dni);
                 foreach ($informacion as $dato){
                     $_SESSION['dni'] = $dni;
                     $_SESSION['nombre'] = $dato['nom_alum'];

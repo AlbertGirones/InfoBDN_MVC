@@ -50,4 +50,20 @@ class Alumne extends Database
         $consulta->execute();
     }
 
+    public function insertarFecha(
+        $date,
+        $dniAlumne
+    )
+    {
+        $consulta = $this->db->prepare("UPDATE alumnes SET last_login = '$date' WHERE DNI = '$dniAlumne'");
+        $consulta->execute();
+    }
+
+    public function obtenerLoginAlumne($dni) {
+        $consulta = $this->db->prepare("SELECT * FROM alumnes WHERE DNI = '$dni'");
+        $consulta->execute();
+        $datos = $consulta->fetchAll();
+        return $datos;
+    }
+
 }

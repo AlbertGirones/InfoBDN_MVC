@@ -1,5 +1,6 @@
 <?php
 
+require "models/alumne.php";
 require "models/cursos.php";
 require "models/professors.php";
 require "models/matricula.php";
@@ -124,9 +125,12 @@ class CursosController
     }
 
     public function showCursosDisponibles(){
+        $user = $_SESSION["dni"];
+        $infoLogin = new Alumne();
+        $infoAlumne = $infoLogin->obtenerLoginAlumne($user);
+        $loginAlumne = $infoAlumne[0][7] == NULL ? $loginAlumne = 0 : $loginAlumne = 1;
         $curs = new Curs();
         $date = date ( 'Y-m-d' );
-        $user = $_SESSION["dni"];
         $listado = $curs->comprobarFechaCurso($date, $user);
         require_once "views/alumne/cursosDisponibles.php";
     }
