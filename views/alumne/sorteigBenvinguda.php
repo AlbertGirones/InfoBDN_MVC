@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Sorteig de Benvinguda</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../script.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,35 +44,11 @@
 </head>
 
 <body>
-
     <h1>Enhorabona!</h1>
-
-    <!-- DIV per a mostrar el premi -->
     <div id="resultat"></div>
-
-    <div>
-
-        <script>
-            // String dels diferent premis
-            var premis = [
-                "2 cursos gratuïts ( JavaScript i PHP)",
-                "1 viatge amb la teva parella a Roma!",
-                "1 beca universitària per a la carrera que vulguis!",
-
-            ];
-
-            // Funció per a obtenir un premi aleatori, utilitzant random:
-            function obtenirPremiAleat() {
-                var indexAleat = Math.floor(Math.random() * premis.length);
-                return premis[indexAleat];
-            }
-
-            // Funció per a ostrar el premi aleatori en el DIV amb ID resultat
-            var premiAleat = obtenirPremiAleat();
-            document.getElementById("resultat").innerHTML = "<h2>Has guanyat:</h2><p>" + premiAleat + "</p>";
-
-        </script>
-
+    <script>
+        var premiAleat = obtenirPremiAleat();
+        document.getElementById("resultat").innerHTML = "<h2>Has guanyat:</h2><p>" + premiAleat + "</p>";
+    </script>
 </body>
-
 </html>
