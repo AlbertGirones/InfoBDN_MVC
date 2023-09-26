@@ -129,8 +129,9 @@ class CursosController
         $infoLogin = new Alumne();
         $infoAlumne = $infoLogin->obtenerLoginAlumne($user);
         $loginAlumne = $infoAlumne[0][7] == NULL ? $loginAlumne = 0 : $loginAlumne = 1;
-        $curs = new Curs();
         $date = date ( 'Y-m-d' );
+        $infoLogin->insertarFecha($date,$user);
+        $curs = new Curs();
         $listado = $curs->comprobarFechaCurso($date, $user);
         require_once "views/alumne/cursosDisponibles.php";
     }
