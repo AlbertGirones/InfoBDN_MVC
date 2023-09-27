@@ -356,3 +356,45 @@ tr{
     width: 80px;
     height: 110px;
 }
+
+
+/* CSS FINESTRA EMERGENT SORTEIG */
+
+.bodySorteig {
+    font-family: Arial, sans-serif;
+    /* background-color: #f2f2f2; */
+    padding: 0;
+
+    width: 80%;
+    display: flex;
+    margin: auto;
+}
+
+.titol {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 3rem;
+    text-align: center;
+    font-weight: bold;
+    color:#4A1628;
+}
+
+#resultat {
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #4A1628;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10%;
+}
+
+.imatgeCross {
+    margin-left: 40%;
+    margin-top: 10%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    
+}
