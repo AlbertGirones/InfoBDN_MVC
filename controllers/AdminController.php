@@ -25,10 +25,19 @@ class AdminController
             require_once "views/loginIncorrecte.php";
         }
     }
-
+    
     public function showPrincipalPage(){
         if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
             require_once "views/Admin/menuAdmin.php";
+        }
+        else {
+            require_once "views/loginIncorrecte.php";
+        }
+    }
+
+    public function showAdminStudents(){
+        if (isset($_SESSION['user']) && $_SESSION['role'] == 'admin'){
+            require_once "views/Admin/menuAdminStudents.php";
         }
         else {
             require_once "views/loginIncorrecte.php";

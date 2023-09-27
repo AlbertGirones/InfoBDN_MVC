@@ -15,3 +15,8 @@ function obtenirPremiAleat() {
     var indexAleat = Math.floor(Math.random() * premis.length);
     return premis[indexAleat];
 }
+
+function loadFile() {
+    var x = 'hola';
+    console.log(x);
+}
