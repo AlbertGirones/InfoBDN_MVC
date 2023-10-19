@@ -66,4 +66,21 @@ class Alumne extends Database
         return $datos;
     }
 
+    public function checkID($dni)
+    {
+        $consulta = $this->db->prepare("SELECT * FROM alumnes WHERE DNI = '$dni'");
+        $consulta->execute();
+        if ($consulta->fetch(PDO::FETCH_OBJ)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function insertStudentForFile($dni,$name,$surname,$year)
+    {
+        $consulta = $this->db->prepare("INSERT INTO alumnes (DNI, nom_alum, cog_alum, edat_alum, foto_alum, correo_alum, passwd_alum) VALUES ('$dni', '$name', '$surname', '$year', 'alumimg/predeterminada.jpg', 'predetermminada@gmail.com', '202cb962ac59075b964b07152d234b70')");
+        $consulta->execute();
+    }
+
 }

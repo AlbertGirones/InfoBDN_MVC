@@ -20,4 +20,10 @@ class Matricula extends Database
         $consulta->execute();
     }
 
+    public function insertRegistrationForFile($dni,$register)
+    {
+        $consulta = $this->db->prepare("INSERT INTO matricula VALUES ('$dni', '$register', 0)");
+        $consulta->execute();
+    }
+
 }

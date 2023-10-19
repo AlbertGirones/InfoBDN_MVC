@@ -102,4 +102,14 @@ class Curs extends Database
         return $resultado;
     }
 
+    public function checkBook($register){
+        $consulta = $this->db->prepare("SELECT * FROM cursos WHERE codi_curs = $register AND visible = 1");
+        $consulta->execute();
+        if ($consulta->fetch(PDO::FETCH_OBJ)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

@@ -1,4 +1,6 @@
 <?php
+require_once ("./views/header.php");
+
 echo "<div class='header'>
     <img src='img/logo.svg' alt='Logo'>
     <div class='navmenu'>
@@ -38,3 +40,4 @@ echo "<div class='header'>
     }
     echo "</table>
 </div>";
+require_once("./views/footer.php");

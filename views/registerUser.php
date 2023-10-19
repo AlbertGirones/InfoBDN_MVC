@@ -1,4 +1,6 @@
-<div class='header'>
+<?php
+require_once ("./views/header.php"); 
+echo "<div class='header'>
     <img src='img/logo.svg' alt='Logo'>
     <div class='navmenu'>
         <a href='index.php?controller=Principal&action=showUserLogin'><p>Torna enrere ...</p></a>
@@ -16,4 +18,5 @@
         <div><p><br></p><input accept=image/jpeg type='file' name='foto' id='foto'></input></div>
         <div><button type='submit' class='botonform'><img src='img/sendwhitegood.svg' id='fotoenviar'></button></div>
     </form>
-</div>
+</div>";
+require_once("./views/footer.php");

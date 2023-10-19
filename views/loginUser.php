@@ -1,4 +1,6 @@
-<div class='header'>
+<?php
+require_once ("./views/header.php");
+echo "<div class='header'>
     <img src='img/logo.svg' alt='Logo'>
     <div class='navmenu'>
         <a href='index.php?controller=Principal&action=index'><p>Torna enrere ...</p></a>
@@ -14,4 +16,5 @@
         <p><button type='submit' class='botonform'><img src='img/sendwhitegood.svg' id='fotoenviar'></button></p>
     </form>
 </div>
-<a href='index.php?controller=Principal&action=showUserRegister' id='registerlink'><p>Ets alumne? Registrat!</p></a>
+<a href='index.php?controller=Principal&action=showUserRegister' id='registerlink'><p>Ets alumne? Registrat!</p></a>";
+require_once("./views/footer.php");

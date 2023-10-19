@@ -94,7 +94,7 @@ class PrincipalController
         $alumne->anadir($DNIAlumne, $nomAlumne, $cognomAlumne, $edatAlumne, $correoAlumne, $md5passwd, $imagen);
         header("Location: index.php?controller=Principal&action=showUserLogin");
     }
-
+    
     public function destroySesion()
     {
         session_destroy();
