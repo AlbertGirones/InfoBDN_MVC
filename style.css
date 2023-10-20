@@ -242,13 +242,14 @@ body {
     text-align: center;
     margin-top: 0.5%;
 }
+
 #adminhub{
     display: flex;
     flex-direction: row;
     margin-top: 15%;
     margin-left: auto;
     margin-right: auto;
-    width: 700px;
+    width: 1000px;
     height: 300px;
     align-items: center;
 }
@@ -257,8 +258,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 150px;
-    width: 300px;
-    margin-right: 50px;
+    width: 400px;
     margin-left: 50px;
     border: 2px solid #000000;
     border-radius: 7px;
@@ -269,6 +269,34 @@ body {
     text-decoration: none;
     font-size: 25px;
 }
+
+/* ESTILOS INSERCION ARCHIVO ALUMNOS */
+
+#adminhub_student{
+    display: flex;
+    margin: auto;
+    margin-top: 15%;
+    height: 100px;
+}
+
+#archivoInput {
+    display: flex;
+    margin: auto;
+}
+
+#data {
+    display: flex;
+    margin: auto;
+}
+
+#botonInput {
+    display: flex;
+    margin: auto;
+    margin-top: 50px;
+}
+ 
+/* FIN ESTILOS INSERCIÓN ARCHIVO ALUMNOS */
+
 #administracion{
     display: flex;
     flex-direction: column;
@@ -300,9 +328,9 @@ body {
     margin-bottom: 8%;
 }
 table {
-     border: 2px solid #000000;
-     border-collapse: collapse;
-     text-align: center;
+    border: 2px solid #000000;
+    border-collapse: collapse;
+    text-align: center;
  }
 th{
     border: 1px solid #4A1628;

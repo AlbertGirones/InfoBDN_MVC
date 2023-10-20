@@ -8,7 +8,7 @@ if (isset($_SESSION["user"])){
             <a href='index.php?controller=Principal&action=destroySesion'><p>Tancar sessió</p></a>
         </div>
     </div>
-    <div id='adminhub'>
+    <div id='adminhub_student'>
         <input type='file' id='archivoInput' />
     </div>
     <div id='data'></div>
