@@ -1,4 +1,5 @@
 // CONCURS
+
 function obrirFinestraConcurs() {
     var altura = 350;
     var amplada = 450;
@@ -20,17 +21,20 @@ function obtenirPremiAleat() {
 //ARXIU
 
 function loadFile(e) {
-    return new Promise(function (resolve, reject) {
-        var arxiu = e.target.files[0];
-        if (arxiu) {
-            var lector = new FileReader();
-            lector.readAsText(arxiu);
-            lector.onload = function (event) {
-                var contingut = event.target.result;
-                resolve(editFile(contingut));
-            }
+    console.log("hola");
+    var r="";
+    var arxiu = e.target.files[0];
+    if (arxiu) {
+        var lector = new FileReader();
+        lector.readAsText(arxiu);
+        lector.onload = function (event) {
+            var contingut = event.target.result;
+           r= editFile(contingut);
+           console.log("R1 vale:"+r);
+           return r;
         }
-    })
+    }
+   
 }
 
 function editFile(contingut) {
@@ -61,13 +65,12 @@ function editFile(contingut) {
         aux.push(aux2);
         array.push(aux);
     }
-    sendFile(array)
+    sendFile(array);
     return array;
 }
 
 function sendFile(array) {
     const cadenaAEnviar = array;
-
     fetch('index.php?controller=Admin&action=showAdminStudents', {
         method: 'POST',
         body: JSON.stringify({ cadena: cadenaAEnviar }),
@@ -87,7 +90,7 @@ function sendFile(array) {
 
 function sendInsert(array) {
     const cadenaAEnviar = array;
-
+    console.log("sendI"+array);
     fetch('index.php?controller=Admin&action=sendStudentsToDB', {
         method: 'POST',
         body: JSON.stringify({ cadena: cadenaAEnviar }),

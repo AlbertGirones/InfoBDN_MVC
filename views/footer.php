@@ -2,13 +2,23 @@
 const archivoInput = document.getElementById('archivoInput');
 const botonInput = document.getElementById('botonInput');
 let filePHP;
-archivoInput.addEventListener('input', async function(e) {
-    filePHP = await loadFile(e);
-    botonInput.style.display = "block";
+
+archivoInput.addEventListener('change', function(e) {
+    var arxiu = e.target.files[0];
+    if (arxiu) {
+        var lector = new FileReader();
+        lector.readAsText(arxiu);
+        lector.onload = function (event) {
+            var contingut = event.target.result;
+            filePHP = editFile(contingut);
+            console.log(filePHP);
+        }
+        botonInput.style.display = "block";
+    }
 });
 
 botonInput.addEventListener('click', function(e) {
-    if (filePHP) {
+    if (filePHP != "") {
         sendInsert(filePHP);
     }
 })
